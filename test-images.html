@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片测试</title>
+    <style>
+        body { padding: 20px; font-family: sans-serif; }
+        .test-item { margin-bottom: 20px; }
+        .test-item img { width: 100%; max-width: 300px; border: 1px solid #ccc; }
+        .test-item p { font-size: 12px; color: #666; }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>图片加载测试</h1>
+    
+    <div class="test-item">
+        <p>测试图片1: 作品集png/03-交互设计/4.png</p>
+        <img src="作品集png/03-交互设计/4.png" alt="测试1" onload="this.style.borderColor='green'" onerror="this.style.borderColor='red'">
+    </div>
+    
+    <div class="test-item">
+        <p>测试图片2: 作品集png/04-IP设计/Sofufu/1.png</p>
+        <img src="作品集png/04-IP设计/Sofufu/1.png" alt="测试2" onload="this.style.borderColor='green'" onerror="this.style.borderColor='red'">
+    </div>
+    
+    <div class="test-item">
+        <p>测试图片3: zpj/作品集png/06-装置设计/1.png</p>
+        <img src="zpj/作品集png/06-装置设计/1.png" alt="测试3" onload="this.style.borderColor='green'" onerror="this.style.borderColor='red'">
+    </div>
+    
+    <script>
+        // 检查图片加载状态
+        var imgs = document.querySelectorAll('img');
+        imgs.forEach(function(img, index) {
+            img.addEventListener('load', function() {
+                console.log('图片 ' + (index + 1) + ' 加载成功: ' + this.src);
+            });
+            img.addEventListener('error', function() {
+                console.log('图片 ' + (index + 1) + ' 加载失败: ' + this.src);
+            });
+        });
+    </script>
+</body>
+</html>

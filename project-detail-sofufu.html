@@ -1,0 +1,566 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#FFB7C5">
+    <title>酥芙芙契茶屋 - 快闪店IP设计</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* 酥芙芙专属可爱风格样式 */
+        :root {
+            --macaron-pink: #FFB7C5;
+            --macaron-peach: #FFD4B8;
+            --macaron-yellow: #FFF3C4;
+            --macaron-mint: #C8F7DC;
+            --macaron-lavender: #E8D5FF;
+            --macaron-blue: #D4E8FF;
+            --polka-dot-color: rgba(255, 183, 197, 0.2);
+        }
+
+        body {
+            background-color: #FFF8F9;
+        }
+
+        /* 波点背景 */
+        .polka-dot-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle, var(--polka-dot-color) 2px, transparent 2px);
+            background-size: 24px 24px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* 导航栏可爱样式 */
+        .navbar {
+            background: rgba(255, 248, 249, 0.95) !important;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 4px 20px rgba(255, 183, 197, 0.2);
+        }
+
+        .back-btn {
+            background: linear-gradient(135deg, var(--macaron-pink), var(--macaron-peach)) !important;
+            border: none !important;
+            color: white !important;
+        }
+
+        .logo-text {
+            color: var(--macaron-pink);
+        }
+
+        /* 详情页内容 */
+        .detail-page {
+            background: #FFF8F9;
+            padding-top: calc(56px + env(safe-area-inset-top));
+        }
+
+        .detail-project-title {
+            color: #E85D75;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .detail-meta-tag {
+            background: rgba(255, 183, 197, 0.2) !important;
+            color: #E85D75 !important;
+            font-weight: 500;
+        }
+
+        /* 浮动装饰元素 - 调整位置避免遮挡内容 */
+        .floating-decoration {
+            position: fixed;
+            font-size: 20px;
+            pointer-events: none;
+            z-index: 100;
+            opacity: 0.5;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .decoration-1 {
+            top: calc(56px + env(safe-area-inset-top) + 20px);
+            right: 5%;
+            animation-delay: 0s;
+        }
+
+        .decoration-2 {
+            top: calc(56px + env(safe-area-inset-top) + 200px);
+            left: 3%;
+            animation-delay: 1s;
+            font-size: 16px;
+        }
+
+        .decoration-3 {
+            bottom: 150px;
+            right: 8%;
+            animation-delay: 2s;
+            font-size: 18px;
+        }
+
+        .decoration-4 {
+            bottom: 250px;
+            left: 5%;
+            animation-delay: 3s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+        }
+
+        /* 角色卡片 */
+        .character-card {
+            background: white;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 20px rgba(255, 183, 197, 0.15);
+            border: 2px solid var(--macaron-pink);
+        }
+
+        .character-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            overflow: hidden;
+            border: 3px solid var(--macaron-peach);
+        }
+
+        .character-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .character-name {
+            text-align: center;
+            font-size: 15px;
+            font-weight: 600;
+            color: #E85D75;
+            margin-bottom: 6px;
+        }
+
+        .character-role {
+            text-align: center;
+            font-size: 12px;
+            color: #E85D75;
+            background: rgba(255, 212, 184, 0.3);
+            padding: 4px 10px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .character-desc {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        /* 概念说明区域 */
+        .detail-concept-section {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(255, 183, 197, 0.1);
+            border: 1px solid rgba(255, 183, 197, 0.3);
+        }
+
+        .concept-content {
+            font-size: 14px;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        .concept-content h4 {
+            color: #E85D75;
+            font-size: 15px;
+            margin-top: 16px;
+            margin-bottom: 10px;
+            padding-left: 12px;
+            border-left: 3px solid var(--macaron-pink);
+        }
+
+        .concept-content p {
+            margin-bottom: 12px;
+        }
+
+        /* 视频区域 */
+        .detail-video-section {
+            margin-bottom: 20px;
+        }
+
+        .video-container {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(255, 183, 197, 0.2);
+            border: 2px solid var(--macaron-peach);
+            aspect-ratio: 4/3;
+            background: #000;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-hint {
+            font-size: 12px;
+            color: #999;
+            text-align: center;
+            margin-top: 8px;
+        }
+
+        /* 图集区域 */
+        .gallery-scroll-container {
+            position: relative;
+            margin-bottom: 12px;
+        }
+
+        .gallery-scroll {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding-bottom: 12px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .gallery-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .gallery-item {
+            flex-shrink: 0;
+            width: 280px;
+            max-width: calc(100% - 24px);
+            aspect-ratio: 4/3;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #f5f5f5;
+            scroll-snap-align: center;
+            scroll-snap-stop: always;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #f5f5f5;
+        }
+
+        .gallery-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .gallery-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(232, 93, 117, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-dot.active {
+            background: #E85D75;
+            width: 20px;
+            border-radius: 4px;
+        }
+
+        /* 页脚 */
+        footer {
+            background: linear-gradient(135deg, var(--macaron-pink), var(--macaron-peach)) !important;
+        }
+
+        .footer-logo, .footer-contact-title, .footer-social-title {
+            color: white !important;
+        }
+
+        .footer-description, .contact-item, .footer-bottom {
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+
+        .footer-social-links a {
+            border-color: rgba(255, 255, 255, 0.3) !important;
+            color: white !important;
+        }
+
+        /* 触摸反馈 */
+        .back-btn:active,
+        .view-detail-btn:active {
+            transform: scale(0.96);
+        }
+    </style>
+</head>
+<body>
+    <!-- 波点背景 -->
+    <div class="polka-dot-bg"></div>
+    
+    <!-- 浮动装饰 -->
+    <div class="floating-decoration decoration-1">🧁</div>
+    <div class="floating-decoration decoration-2">🍰</div>
+    <div class="floating-decoration decoration-3">🍪</div>
+    <div class="floating-decoration decoration-4">🍩</div>
+
+    <!-- 导航栏 -->
+    <header class="navbar">
+        <nav class="nav-container">
+            <a href="index.html" class="back-btn" aria-label="返回项目列表">
+                <i class="fas fa-arrow-left"></i>
+                <span>返回</span>
+            </a>
+            <a href="index.html" class="logo" aria-label="Yeuni">
+                <span class="logo-text">Yeuni</span>
+            </a>
+            <div class="nav-placeholder"></div>
+        </nav>
+    </header>
+
+    <!-- 详情页内容 -->
+    <main class="detail-page">
+        <div class="container">
+            <!-- 视频区域 - 移至最上方 -->
+            <section class="detail-video-section">
+                <div class="video-container">
+                    <video controls poster="png/04ip/Sofufu/1.png" playsinline webkit-playsinline>
+                        <source src="sp/sofufu.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <p class="video-hint">点击播放项目介绍视频</p>
+            </section>
+
+            <!-- 项目标题区域 -->
+            <div class="project-title-wrap">
+                <h1 class="detail-project-title">酥芙芙契茶屋</h1>
+                <div class="detail-meta-tags">
+                    <span class="detail-meta-tag">原创IP</span>
+                    <span class="detail-meta-tag">手绘设计</span>
+                    <span class="detail-meta-tag">展陈空间</span>
+                    <span class="detail-meta-tag">2024-2025</span>
+                </div>
+            </div>
+
+            <!-- 图集区域 -->
+            <section class="detail-gallery-section">
+                <h2 class="section-title">项目图集</h2>
+                <div class="gallery-scroll-container">
+                    <div class="gallery-scroll" id="galleryScroll">
+                        <div class="gallery-item">
+                            <img src="png/04ip/Sofufu/1.png" alt="酥芙芙契茶屋">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="png/04ip/Sofufu/2.png" alt="福克斯">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="png/04ip/Sofufu/3.png" alt="小栗贝儿">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="png/04ip/Sofufu/4.png" alt="克尔顿">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="png/04ip/Sofufu/5.png" alt="瑞比特">
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-indicator" id="galleryIndicator">
+                    <span class="gallery-dot active" data-index="0"></span>
+                    <span class="gallery-dot" data-index="1"></span>
+                    <span class="gallery-dot" data-index="2"></span>
+                    <span class="gallery-dot" data-index="3"></span>
+                    <span class="gallery-dot" data-index="4"></span>
+                </div>
+            </section>
+
+            <!-- 角色介绍 -->
+            <section class="characters-section">
+                <h2 class="section-title">角色介绍</h2>
+                <div class="characters-grid">
+                    <div class="character-card">
+                        <div class="character-avatar">
+                            <img src="png/04ip/Sofufu/2.png" alt="福克斯">
+                        </div>
+                        <div class="character-name">🦊 福克斯</div>
+                        <div class="character-role">狐狸店长</div>
+                        <div class="character-desc">负责店铺运营和甜品研发，温柔体贴的领导者</div>
+                    </div>
+                    <div class="character-card">
+                        <div class="character-avatar">
+                            <img src="png/04ip/Sofufu/3.png" alt="小栗贝儿">
+                        </div>
+                        <div class="character-name">🐻 小栗贝儿</div>
+                        <div class="character-role">甜品店员</div>
+                        <div class="character-desc">擅长制作栗子主题甜品，憨厚可爱</div>
+                    </div>
+                    <div class="character-card">
+                        <div class="character-avatar">
+                            <img src="png/04ip/Sofufu/4.png" alt="克尔顿">
+                        </div>
+                        <div class="character-name">🐑 克尔顿</div>
+                        <div class="character-role">饮品师</div>
+                        <div class="character-desc">调制各种魔法茶饮，优雅温柔</div>
+                    </div>
+                    <div class="character-card">
+                        <div class="character-avatar">
+                            <img src="png/04ip/Sofufu/5.png" alt="瑞比特">
+                        </div>
+                        <div class="character-name">🐰 瑞比特</div>
+                        <div class="character-role">甜点师</div>
+                        <div class="character-desc">制作精美蛋糕和点心，活泼可爱</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 概念说明 -->
+            <section class="detail-concept-section">
+                <h2 class="section-title">品牌故事</h2>
+                <div class="concept-content">
+                    <p>在一个充满魔法的森林里，有一间温馨的契茶屋，由四位可爱的魔法师经营着。</p>
+                    <h4>✨ 品牌理念</h4>
+                    <p>"酥芙芙契茶屋"希望通过可爱的IP形象和温馨的空间设计，为人们带来甜蜜美好的体验。每一款甜品都蕴含着独特的魔法力量，能够治愈心灵。</p>
+                    <h4>🎨 设计灵感</h4>
+                    <p>灵感来源于童话故事中的糖果屋，结合马卡龙色系和可爱的动物形象，打造出充满梦幻感的品牌视觉。</p>
+                    <h4>🏠 快闪店设计</h4>
+                    <p>快闪店空间采用开放式布局，以粉色和奶油色为主色调，搭配可爱的装饰元素，营造出温馨舒适的消费环境。</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="footer-logo">Yeuni</span>
+                    <p class="footer-description">让创意与技术相遇</p>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4 class="footer-contact-title">联系方式</h4>
+                    <div class="contact-list">
+                        <a href="mailto:1186862543@qq.com" class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>1186862543@qq.com</span>
+                        </a>
+                        <a href="tel:15015179179" class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>15015179179</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-social">
+                    <h4 class="footer-social-title">社交平台</h4>
+                    <div class="footer-social-links">
+                        <a href="#" aria-label="微博">
+                            <i class="fab fa-weibo"></i>
+                        </a>
+                        <a href="#" aria-label="小红书">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" aria-label="站酷">
+                            <i class="fas fa-link"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2025 Yeuni. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 移动端交互
+        document.addEventListener('DOMContentLoaded', function() {
+            // 菜单切换
+            var menuToggle = document.getElementById('menuToggle');
+            var navLinks = document.getElementById('navLinks');
+            
+            if (menuToggle && navLinks) {
+                menuToggle.addEventListener('click', function() {
+                    menuToggle.classList.toggle('active');
+                    navLinks.classList.toggle('active');
+                });
+            }
+
+            // 视频播放优化
+            var video = document.querySelector('video');
+            if (video) {
+                video.addEventListener('click', function() {
+                    if (video.paused) {
+                        video.play();
+                    } else {
+                        video.pause();
+                    }
+                });
+            }
+
+            // 图集滑动指示器
+            var galleryScroll = document.getElementById('galleryScroll');
+            var galleryIndicator = document.getElementById('galleryIndicator');
+            
+            if (galleryScroll && galleryIndicator) {
+                // 滑动监听更新指示器
+                galleryScroll.addEventListener('scroll', function() {
+                    updateGalleryIndicator();
+                });
+                
+                // 点击指示器跳转
+                var dots = galleryIndicator.querySelectorAll('.gallery-dot');
+                dots.forEach(function(dot) {
+                    dot.addEventListener('click', function() {
+                        var index = parseInt(this.dataset.index);
+                        scrollToGalleryImage(index);
+                    });
+                });
+            }
+            
+            function scrollToGalleryImage(index) {
+                var items = galleryScroll.querySelectorAll('.gallery-item');
+                if (items[index]) {
+                    items[index].scrollIntoView({ behavior: 'smooth', inline: 'center' });
+                }
+            }
+            
+            function updateGalleryIndicator() {
+                var items = galleryScroll.querySelectorAll('.gallery-item');
+                var containerWidth = galleryScroll.offsetWidth;
+                var scrollLeft = galleryScroll.scrollLeft;
+                
+                items.forEach(function(item, index) {
+                    var itemLeft = item.offsetLeft;
+                    var itemWidth = item.offsetWidth;
+                    var itemCenter = itemLeft + itemWidth / 2;
+                    var viewportCenter = scrollLeft + containerWidth / 2;
+                    
+                    var dots = galleryIndicator.querySelectorAll('.gallery-dot');
+                    if (Math.abs(itemCenter - viewportCenter) < itemWidth / 2) {
+                        dots.forEach(function(d) { d.classList.remove('active'); });
+                        dots[index].classList.add('active');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
