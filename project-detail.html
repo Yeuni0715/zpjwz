@@ -916,7 +916,7 @@
             const videoContainer1 = document.getElementById('video-container-1');
             if (project.video) {
                 videoContainer1.innerHTML = `
-                    <video controls playsinline>
+                    <video controls playsinline preload="auto">
                         <source src="${project.video}" type="video/mp4">
                     </video>
                 `;
@@ -935,7 +935,7 @@
             if (project.video2) {
                 secondVideoSection.style.display = 'block';
                 videoContainer2.innerHTML = `
-                    <video controls playsinline>
+                    <video controls playsinline preload="auto">
                         <source src="${project.video2}" type="video/mp4">
                     </video>
                 `;
