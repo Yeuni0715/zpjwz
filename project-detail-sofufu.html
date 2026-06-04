@@ -357,13 +357,17 @@
     <!-- 导航栏 -->
     <header class="navbar">
         <nav class="nav-container">
-            <a href="index.html" class="back-btn" aria-label="返回项目列表">
+            <!-- 左上角：返回项目列表按钮 -->
+            <a href="index.html#projects" class="logo back-btn-nav" aria-label="返回项目列表">
                 <i class="fas fa-arrow-left"></i>
-                <span>返回</span>
+                <span>返回项目列表</span>
             </a>
-            <a href="index.html" class="logo" aria-label="Yeuni">
-                <span class="logo-text">Yeuni</span>
-            </a>
+            
+            <!-- 右侧：Yeuni Logo -->
+            <div class="nav-right">
+                <span class="logo-text-detail">Yeuni</span>
+            </div>
+            
             <div class="nav-placeholder"></div>
         </nav>
     </header>
@@ -396,12 +400,6 @@
             <section class="detail-gallery-section">
                 <h2 class="section-title">项目图集</h2>
                 <div class="gallery-scroll-container">
-                    <button class="gallery-nav-btn left" id="galleryPrev">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button class="gallery-nav-btn right" id="galleryNext">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
                     <div class="gallery-scroll" id="galleryScroll">
                         <div class="gallery-item">
                             <img src="png/04ip/Sofufu/1.png" alt="酥芙芙契茶屋">
@@ -418,6 +416,14 @@
                         <div class="gallery-item">
                             <img src="png/04ip/Sofufu/5.png" alt="瑞比特">
                         </div>
+                    </div>
+                    <div class="gallery-nav-buttons">
+                        <button class="gallery-nav-btn left" id="galleryPrev">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="gallery-nav-btn right" id="galleryNext">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
                     </div>
                 </div>
                 <div class="gallery-indicator" id="galleryIndicator">

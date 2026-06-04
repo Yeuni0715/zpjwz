@@ -8,9 +8,48 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* 详情页专属样式 */
-        .detail-page {
-            padding: 120px 0 60px;
+        /* 导航栏样式调整 */
+        .nav-container {
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-btn-nav {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: transparent;
+            border: none;
+            color: var(--color-grey-700);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: var(--radius-md);
+            transition: all 0.3s;
+        }
+
+        .back-btn-nav:hover {
+            background: var(--color-grey-100);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 0;
+        }
+
+        .logo-text-detail {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--color-text-dark);
+            text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.1);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: none !important;
         }
 
         .detail-header {
@@ -226,13 +265,12 @@
         .gallery-indicators {
             display: flex;
             justify-content: center;
-            gap: 8px;
-            margin-top: 16px;
+            gap: 6px;
         }
 
         .gallery-dot {
-            width: 8px;
-            height: 8px;
+            width: 6px;
+            height: 6px;
             border-radius: 50%;
             background: var(--color-grey-300);
             cursor: pointer;
@@ -241,33 +279,30 @@
 
         .gallery-dot.active {
             background: var(--color-primary);
-            width: 20px;
-            border-radius: 4px;
+            width: 16px;
+            border-radius: 3px;
         }
 
-        .gallery-arrows {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 100%;
+        .gallery-controls {
             display: flex;
-            justify-content: space-between;
-            padding: 0 16px;
-            pointer-events: none;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            margin-top: 16px;
         }
 
         .gallery-arrow {
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.9);
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            pointer-events: auto;
-            box-shadow: var(--shadow-md);
+            box-shadow: var(--shadow-sm);
             transition: all 0.2s ease;
+            border: 1px solid var(--color-grey-200);
         }
 
         .gallery-arrow:hover {
@@ -277,19 +312,7 @@
 
         .gallery-arrow i {
             color: var(--color-grey-700);
-            font-size: 18px;
-        }
-
-        .gallery-counter {
-            position: absolute;
-            bottom: 16px;
-            right: 16px;
-            background: rgba(0, 0, 0, 0.6);
-            color: white;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 500;
+            font-size: 16px;
         }
 
         /* 不同项目类型的footer主题色 - 更浅的色调 */
@@ -502,15 +525,17 @@
     <!-- 导航栏 -->
     <header class="navbar">
         <nav class="nav-container">
-            <a href="index.html" class="logo" aria-label="Yeuni">
-                <span class="logo-text">Yeuni</span>
+            <!-- 左上角：返回项目列表按钮 -->
+            <a href="index.html#projects" class="logo back-btn-nav" aria-label="返回项目列表">
+                <i class="fas fa-arrow-left"></i>
+                <span>返回项目列表</span>
             </a>
-            <ul class="nav-links">
-                <li><a href="index.html#home">首页</a></li>
-                <li><a href="index.html#projects">项目</a></li>
-                <li><a href="index.html#about">关于</a></li>
-                <li><a href="index.html#contact">联系</a></li>
-            </ul>
+            
+            <!-- 右侧：Yeuni Logo -->
+            <div class="nav-right">
+                <span class="logo-text-detail">Yeuni</span>
+            </div>
+            
             <button class="menu-toggle" aria-label="切换菜单">
                 <span></span>
                 <span></span>
@@ -524,10 +549,6 @@
         <div class="container">
             <!-- 头部信息 -->
             <div class="detail-header">
-                <a href="index.html#projects" class="back-btn">
-                    <i class="fas fa-arrow-left"></i>
-                    <span>返回项目列表</span>
-                </a>
                 <div class="project-title-wrap">
                     <h1 class="detail-project-title" id="project-title">项目详情</h1>
                     <div class="detail-meta-tags" id="project-tags">
@@ -585,17 +606,16 @@
                 <div class="gallery-container" id="gallery-container">
                     <div class="gallery-track" id="gallery-track">
                     </div>
-                    <div class="gallery-arrows">
-                        <button class="gallery-arrow gallery-prev" id="gallery-prev" aria-label="上一张">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
-                        <button class="gallery-arrow gallery-next" id="gallery-next" aria-label="下一张">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
-                    </div>
-                    <div class="gallery-counter" id="gallery-counter">1 / 1</div>
                 </div>
-                <div class="gallery-indicators" id="gallery-indicators">
+                <div class="gallery-controls">
+                    <button class="gallery-arrow gallery-prev" id="gallery-prev" aria-label="上一张">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="gallery-indicators" id="gallery-indicators">
+                    </div>
+                    <button class="gallery-arrow gallery-next" id="gallery-next" aria-label="下一张">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
                 </div>
             </section>
 
@@ -664,8 +684,8 @@
                 video: 'BV1xLVm6yE7y',
                 video2: 'BV1t3Vm67EY8',
                 type: 'interaction',
-                tags: ['交互设计', '斐波那契', '数字艺术', '植物美学'],
-                awards: ['米兰设计周 - 中国高校设计学科师生优秀作品展一等奖'],
+                tags: ['交互设计', '数字艺术', '植物美学'],
+                awards: [],
                 gallery: [
                     'png/03jh/4.png',
                     'png/03jh/5.png',
@@ -794,7 +814,6 @@
             const gallerySection = document.getElementById('gallery-section');
             const galleryTrack = document.getElementById('gallery-track');
             const galleryIndicators = document.getElementById('gallery-indicators');
-            const galleryCounter = document.getElementById('gallery-counter');
             const prevBtn = document.getElementById('gallery-prev');
             const nextBtn = document.getElementById('gallery-next');
 
@@ -829,9 +848,6 @@
                 galleryIndicators.appendChild(dot);
             });
 
-            // 更新计数器
-            galleryCounter.textContent = `1 / ${project.gallery.length}`;
-
             // 滑动功能
             let currentIndex = 0;
             const slideWidth = galleryTrack.offsetWidth;
@@ -847,9 +863,6 @@
                 document.querySelectorAll('.gallery-dot').forEach((dot, i) => {
                     dot.classList.toggle('active', i === currentIndex);
                 });
-
-                // 更新计数器
-                galleryCounter.textContent = `${currentIndex + 1} / ${project.gallery.length}`;
             }
 
             // 上一张

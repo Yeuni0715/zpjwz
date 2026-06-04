@@ -504,15 +504,15 @@ body, input, textarea, button {
 .info-list {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-md);
+    gap: 4px;
 }
 
 .info-item {
     display: flex;
     align-items: center;
-    padding: var(--spacing-sm) 0;
+    padding: 4px 0;
     transition: background-color 0.2s ease;
-    padding: var(--spacing-sm) var(--spacing-md);
+    padding: 4px var(--spacing-md);
     border-radius: var(--radius-md);
 }
 
@@ -1152,16 +1152,17 @@ footer {
     position: relative;
     margin-bottom: var(--spacing-md);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
 .gallery-nav-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 44px;
-    height: 44px;
+    position: static;
+    top: auto;
+    transform: none;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.95);
     border: 1px solid var(--color-border-light);
@@ -1176,23 +1177,29 @@ footer {
 
 .gallery-nav-btn:hover {
     background: var(--color-white);
-    transform: translateY(-50%) scale(1.1);
+    transform: scale(1.1);
 }
 
 .gallery-nav-btn:active {
-    transform: translateY(-50%) scale(0.95);
+    transform: scale(0.95);
 }
 
 .gallery-nav-btn.left {
-    left: var(--spacing-sm);
+    left: auto;
 }
 
 .gallery-nav-btn.right {
-    right: var(--spacing-sm);
+    right: auto;
+}
+
+.gallery-nav-buttons {
+    display: flex;
+    gap: 16px;
+    margin-top: 16px;
 }
 
 .gallery-nav-btn i {
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-md);
     color: var(--color-text-dark);
 }
 
@@ -1247,12 +1254,13 @@ footer {
 .gallery-indicator {
     display: flex;
     justify-content: center;
-    gap: 8px;
+    gap: 6px;
+    margin-top: 8px;
 }
 
 .gallery-dot {
-    width: 10px;
-    height: 10px;
+    width: 5px;
+    height: 5px;
     border-radius: 50%;
     background: var(--color-border);
     transition: all 0.3s ease;
