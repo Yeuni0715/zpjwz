@@ -661,8 +661,8 @@
                 name: '序数花园',
                 title: '序数花园&沉浸式空间',
                 cover: 'png/03jh/4.png',
-                video: 'https://www.bilibili.com/video/BV1xLVm6yE7y',
-                video2: 'https://www.bilibili.com/video/BV1t3Vm67EY8',
+                video: 'BV1xLVm6yE7y',
+                video2: 'BV1t3Vm67EY8',
                 type: 'interaction',
                 tags: ['交互设计', '斐波那契', '数字艺术', '植物美学'],
                 awards: ['米兰设计周-中国高校设计学科师生优秀作品展一等奖'],
@@ -690,7 +690,7 @@
                 name: '狸塔塔',
                 title: '狸塔塔 - 深技大数字人IP',
                 cover: 'png/04ip/litata/9.png',
-                video: 'https://www.bilibili.com/video/BV1t3Vm67ERs',
+                video: 'BV1t3Vm67ERs',
                 type: 'ip',
                 tags: ['IP设计', '数字人', '品牌形象', '深圳'],
                 gallery: [
@@ -714,7 +714,7 @@
                 name: '好梦',
                 title: '好梦 - 疗愈系助眠应用',
                 cover: 'png/05ui/13.png',
-                video: 'https://www.bilibili.com/video/BV1U3Vm67EGk',
+                video: 'BV1U3Vm67EGk',
                 type: 'ui',
                 tags: ['UI 设计', '助眠 APP', '情感设计', '梦貘'],
                 gallery: [
@@ -739,7 +739,7 @@
                 name: '蜷白',
                 title: '蜷白 - 可穿戴装置',
                 cover: 'png/06zz/1.png',
-                video: 'https://www.bilibili.com/video/BV1t3Vm67E9u',
+                video: 'BV1t3Vm67E9u',
                 type: 'installation',
                 tags: ['可穿戴装置', '交互艺术', '情绪可视化', '含羞草'],
                 gallery: [
@@ -915,18 +915,15 @@
             // 加载视频
             const videoContainer1 = document.getElementById('video-container-1');
             if (project.video) {
-                videoContainer1.innerHTML = `
-                    <video controls playsinline preload="auto">
-                        <source src="${project.video}" type="video/mp4">
-                    </video>
-                `;
+                if (project.video.startsWith('BV')) {
+                    // B站视频使用iframe嵌入
+                    videoContainer1.innerHTML = '<iframe width="100%" height="400" src="https://player.bilibili.com/player.html?bvid=' + project.video + '&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>';
+                } else {
+                    // 本地视频使用video标签
+                    videoContainer1.innerHTML = '<video controls playsinline preload="auto"><source src="' + project.video + '" type="video/mp4"></video>';
+                }
             } else {
-                videoContainer1.innerHTML = `
-                    <div class="video-placeholder">
-                        <i class="fas fa-play-circle"></i>
-                        <p>项目演示视频</p>
-                    </div>
-                `;
+                videoContainer1.innerHTML = '<div class="video-placeholder"><i class="fas fa-play-circle"></i><p>项目演示视频</p></div>';
             }
 
             // 加载第二个视频（仅序数花园项目）
@@ -934,11 +931,11 @@
             const videoContainer2 = document.getElementById('video-container-2');
             if (project.video2) {
                 secondVideoSection.style.display = 'block';
-                videoContainer2.innerHTML = `
-                    <video controls playsinline preload="auto">
-                        <source src="${project.video2}" type="video/mp4">
-                    </video>
-                `;
+                if (project.video2.startsWith('BV')) {
+                    videoContainer2.innerHTML = '<iframe width="100%" height="400" src="https://player.bilibili.com/player.html?bvid=' + project.video2 + '&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>';
+                } else {
+                    videoContainer2.innerHTML = '<video controls playsinline preload="auto"><source src="' + project.video2 + '" type="video/mp4"></video>';
+                }
             } else {
                 secondVideoSection.style.display = 'none';
             }
