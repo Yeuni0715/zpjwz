@@ -337,7 +337,18 @@
     <!-- 详情页内容 -->
     <main class="detail-page">
         <div class="container">
-            <!-- 视频区域 - 移至最上方 -->
+            <!-- 项目标题区域 -->
+            <div class="project-title-wrap">
+                <h1 class="detail-project-title">酥芙芙契茶屋</h1>
+                <div class="detail-meta-tags">
+                    <span class="detail-meta-tag">原创 IP</span>
+                    <span class="detail-meta-tag">手绘设计</span>
+                    <span class="detail-meta-tag">展陈空间</span>
+                    <span class="detail-meta-tag">2024-2025</span>
+                </div>
+            </div>
+
+            <!-- 视频区域 -->
             <section class="detail-video-section">
                 <div class="video-container-wrapper">
                     <div class="video-container-inner">
@@ -346,17 +357,6 @@
                 </div>
                 <p class="video-hint">点击播放项目介绍视频</p>
             </section>
-
-            <!-- 项目标题区域 -->
-            <div class="project-title-wrap">
-                <h1 class="detail-project-title">酥芙芙契茶屋</h1>
-                <div class="detail-meta-tags">
-                    <span class="detail-meta-tag">原创IP</span>
-                    <span class="detail-meta-tag">手绘设计</span>
-                    <span class="detail-meta-tag">展陈空间</span>
-                    <span class="detail-meta-tag">2024-2025</span>
-                </div>
-            </div>
 
             <!-- 图集区域 -->
             <section class="detail-gallery-section">
@@ -595,6 +595,13 @@
                     behavior: 'smooth'
                 });
             }
+            
+            // 初始化时让第一张图片居中
+            setTimeout(function() {
+                if (items[0]) {
+                    items[0].scrollIntoView({ behavior: 'auto', inline: 'center' });
+                }
+            }, 100);
         });
     </script>
 </body>
