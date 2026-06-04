@@ -951,6 +951,7 @@ footer {
 
 .project-title-wrap {
     text-align: center;
+    margin-top: var(--spacing-xxl);
     margin-bottom: var(--spacing-xl);
 }
 
@@ -1026,6 +1027,33 @@ footer {
     border: none;
 }
 
+.video-container-wrapper {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    background: #000;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    width: 100%;
+}
+
+.video-container-inner {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 比例 */
+}
+
+.video-container-inner iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    object-fit: cover;
+}
+
 .video-placeholder {
     position: absolute;
     top: 0;
@@ -1084,6 +1112,9 @@ footer {
 .gallery-scroll-container {
     position: relative;
     margin-bottom: var(--spacing-md);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .gallery-nav-btn {
@@ -1141,6 +1172,8 @@ footer {
     -ms-overflow-style: none;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
+    justify-content: center;
+    align-items: center;
 }
 
 .gallery-scroll::-webkit-scrollbar {
