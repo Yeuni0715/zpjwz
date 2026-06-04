@@ -434,6 +434,43 @@ body, input, textarea, button {
     letter-spacing: -0.5px;
 }
 
+/* 校园经历样式 */
+.experience-card {
+    line-height: 1.8;
+}
+
+.experience-item {
+    margin-bottom: var(--spacing-md);
+}
+
+.experience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.experience-header h4 {
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    color: var(--color-text-dark);
+}
+
+.experience-year {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-medium);
+}
+
+.experience-role {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-medium);
+    line-height: 1.7;
+}
+
+.experience-divider {
+    height: 16px;
+}
+
 /* 个人照片 - INS圆形头像风格 */
 .profile-photo-wrapper {
     width: 160px;
@@ -746,16 +783,18 @@ body, input, textarea, button {
 
 /* ============ 技能板块 ============ */
 .skills-section {
-    margin-bottom: var(--spacing-xxl);
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
 }
 
 .skills-section .section-subtitle {
-    font-size: 32px;
-    font-weight: 700;
+    font-size: 24px;
+    font-weight: 600;
     color: var(--color-text-dark);
-    margin-bottom: var(--spacing-xl);
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
     text-align: center;
-    letter-spacing: -1px;
+    letter-spacing: -0.5px;
 }
 
 .skills-grid {
