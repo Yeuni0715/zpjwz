@@ -559,16 +559,6 @@
                 </div>
             </div>
 
-            <!-- 封面区域 -->
-            <section class="detail-cover-section">
-                <div class="detail-cover">
-                    <img id="cover-image" src="" alt="项目封面">
-                    <div class="cover-overlay">
-                        <h2 class="cover-title" id="cover-title">项目封面</h2>
-                    </div>
-                </div>
-            </section>
-
             <!-- 视频区域 -->
             <section class="detail-video-section">
                 <div class="section-header">
@@ -916,9 +906,6 @@
 
             // 更新页面内容
             document.getElementById('project-title').textContent = project.title;
-            document.getElementById('cover-image').src = project.cover;
-            document.getElementById('cover-image').alt = project.name + ' - 项目封面';
-            document.getElementById('cover-title').textContent = project.name;
             document.getElementById('concept-content').innerHTML = project.concept;
 
             // 更新视频标题
