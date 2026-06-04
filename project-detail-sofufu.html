@@ -339,8 +339,10 @@
         <div class="container">
             <!-- 视频区域 - 移至最上方 -->
             <section class="detail-video-section">
-                <div class="video-container">
-                    <iframe src="https://player.bilibili.com/player.html?bvid=BV14LVm61EMw&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                <div class="video-container-wrapper">
+                    <div class="video-container-inner">
+                        <iframe src="https://player.bilibili.com/player.html?bvid=BV14LVm61EMw&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                    </div>
                 </div>
                 <p class="video-hint">点击播放项目介绍视频</p>
             </section>
@@ -360,6 +362,12 @@
             <section class="detail-gallery-section">
                 <h2 class="section-title">项目图集</h2>
                 <div class="gallery-scroll-container">
+                    <button class="gallery-nav-btn left" id="galleryPrev">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="gallery-nav-btn right" id="galleryNext">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
                     <div class="gallery-scroll" id="galleryScroll">
                         <div class="gallery-item">
                             <img src="png/04ip/Sofufu/1.png" alt="酥芙芙契茶屋">
@@ -513,9 +521,11 @@
                 });
             }
 
-            // 图集滑动指示器
+            // 图集滑动指示器和导航按钮
             var galleryScroll = document.getElementById('galleryScroll');
             var galleryIndicator = document.getElementById('galleryIndicator');
+            var galleryPrev = document.getElementById('galleryPrev');
+            var galleryNext = document.getElementById('galleryNext');
             
             if (galleryScroll && galleryIndicator) {
                 // 滑动监听更新指示器
@@ -531,6 +541,19 @@
                         scrollToGalleryImage(index);
                     });
                 });
+                
+                // 左右箭头点击事件
+                if (galleryPrev) {
+                    galleryPrev.addEventListener('click', function() {
+                        scrollGallery(-1);
+                    });
+                }
+                
+                if (galleryNext) {
+                    galleryNext.addEventListener('click', function() {
+                        scrollGallery(1);
+                    });
+                }
             }
             
             function scrollToGalleryImage(index) {
@@ -556,6 +579,20 @@
                         dots.forEach(function(d) { d.classList.remove('active'); });
                         dots[index].classList.add('active');
                     }
+                });
+            }
+            
+            function scrollGallery(direction) {
+                var items = galleryScroll.querySelectorAll('.gallery-item');
+                if (items.length === 0) return;
+                
+                var itemWidth = items[0].offsetWidth;
+                var gap = 16; // 图片间距
+                var scrollAmount = itemWidth + gap;
+                
+                galleryScroll.scrollBy({
+                    left: scrollAmount * direction,
+                    behavior: 'smooth'
                 });
             }
         });
