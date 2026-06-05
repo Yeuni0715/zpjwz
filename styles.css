@@ -134,14 +134,16 @@ body, input, textarea, button {
     align-items: center;
 }
 
+.logo {
+    text-decoration: none;
+}
+
 .logo-text {
-    font-size: var(--font-size-xl);
+    font-size: 20px;
     font-weight: 700;
-    letter-spacing: 3px;
-    background: linear-gradient(135deg, var(--color-gradient-start) 0%, var(--color-gradient-end) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    letter-spacing: -0.5px;
+    color: #000000;
+    text-decoration: none;
 }
 
 /* 移动端菜单 */
@@ -255,20 +257,21 @@ body, input, textarea, button {
 }
 
 .hero-content {
-    text-align: left;
+    text-align: center;
     position: relative;
     z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .hero-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
     z-index: 2;
     text-align: center;
-    background: #e0e0e0;
-    padding: 20px 40px;
+    background: transparent;
+    padding: 60px 24px 24px;
+    max-width: 100%;
 }
 
 .hero-resume {
@@ -276,7 +279,7 @@ body, input, textarea, button {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 200px;
+    font-size: 100px;
     font-weight: 300;
     color: rgba(255, 255, 255, 0.5);
     white-space: nowrap;
@@ -285,23 +288,23 @@ body, input, textarea, button {
 }
 
 .hero-title {
-    font-size: 96px;
+    font-size: 40px;
     font-weight: 700;
     color: #000000;
-    margin: 0 0 12px;
-    line-height: 1;
-    letter-spacing: -4px;
+    margin: 0 0 8px;
+    line-height: 1.1;
+    letter-spacing: -2px;
 }
 
 .hero-subtitle {
-    font-size: 28px;
+    font-size: 16px;
     font-weight: 500;
     color: #000000;
-    margin: 0;
+    margin: 0 0 6px;
 }
 
 .hero-year {
-    font-size: 18px;
+    font-size: 12px;
     font-weight: 400;
     color: #000000;
     margin: 0;
@@ -349,15 +352,7 @@ body, input, textarea, button {
     }
 }
 
-/* 大标题 Yeuni - 视觉焦点 */
-.hero-title {
-    font-size: var(--font-size-display);
-    font-weight: 800;
-    letter-spacing: -2px;
-    margin-bottom: var(--spacing-md);
-    color: #000000;
-}
-
+/* 大标题动画 */
 @keyframes titleGlow {
     0%, 100% {
         filter: brightness(1);
@@ -365,15 +360,6 @@ body, input, textarea, button {
     50% {
         filter: brightness(1.1);
     }
-}
-
-.hero-subtitle {
-    font-size: var(--font-size-lg);
-    color: #000000;
-    font-weight: 300;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    margin-top: -10px;
 }
 
 .scroll-indicator {

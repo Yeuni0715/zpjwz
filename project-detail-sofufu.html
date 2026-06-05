@@ -47,23 +47,48 @@
             box-shadow: 0 4px 20px rgba(255, 183, 197, 0.2);
         }
 
+        .nav-container {
+            position: relative;
+            padding: 0 40px 0 0;
+        }
+
         .nav-center {
             position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
         }
 
-        .back-btn {
-            background: linear-gradient(135deg, var(--macaron-pink), var(--macaron-peach)) !important;
-            border: none !important;
-            color: white !important;
-            margin-top: 8px;
-            margin-bottom: 8px;
-            padding: 10px 16px !important;
+        .nav-placeholder {
+            display: none;
         }
 
-        .logo-text {
-            color: var(--macaron-pink);
+        .back-btn-nav {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 24px;
+            background: transparent;
+            border: none;
+            color: #000000;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: var(--radius-md);
+            transition: all 0.3s;
+            margin-left: 0;
+        }
+
+        .back-btn-nav:hover {
+            background: var(--color-grey-100);
+        }
+
+        .logo-text-detail {
+            font-size: 20px;
+            font-weight: 700;
+            color: #000000;
+            text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.1);
+            letter-spacing: -0.5px;
         }
 
         /* 详情页内容 */
@@ -79,9 +104,21 @@
         }
 
         .detail-meta-tag {
-            background: rgba(255, 183, 197, 0.2) !important;
-            color: #E85D75 !important;
+            padding: 8px 14px;
+            background: rgba(0, 0, 0, 0.06);
+            color: var(--color-primary);
+            font-size: var(--font-size-xs);
             font-weight: 500;
+            border-radius: var(--radius-full);
+            min-height: 34px;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.2s ease;
+        }
+
+        .detail-meta-tag:hover {
+            background: rgba(0, 0, 0, 0.12);
+            transform: translateY(-1px);
         }
 
         /* 浮动装饰元素 - 调整位置避免遮挡内容 */
@@ -369,12 +406,10 @@
                 <span>返回项目列表</span>
             </a>
             
-            <!-- 中间：Yeuni Logo -->
+            <!-- 右上角：Yeuni Logo -->
             <div class="nav-center">
                 <span class="logo-text-detail">Yeuni</span>
             </div>
-            
-            <div class="nav-placeholder"></div>
         </nav>
     </header>
 
@@ -500,11 +535,6 @@
     <footer id="contact">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-brand">
-                    <span class="footer-logo">Yeuni</span>
-                    <p class="footer-description">让创意与技术相遇</p>
-                </div>
-                
                 <div class="footer-contact">
                     <h4 class="footer-contact-title">联系方式</h4>
                     <div class="contact-list">
@@ -515,21 +545,6 @@
                         <a href="tel:15015179179" class="contact-item">
                             <i class="fas fa-phone"></i>
                             <span>15015179179</span>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="footer-social">
-                    <h4 class="footer-social-title">社交平台</h4>
-                    <div class="footer-social-links">
-                        <a href="#" aria-label="微博">
-                            <i class="fab fa-weibo"></i>
-                        </a>
-                        <a href="#" aria-label="小红书">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" aria-label="站酷">
-                            <i class="fas fa-link"></i>
                         </a>
                     </div>
                 </div>
