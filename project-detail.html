@@ -1029,6 +1029,9 @@
 
         // 加载项目数据
         document.addEventListener('DOMContentLoaded', function() {
+            // 页面加载时强制滚动到顶部
+            window.scrollTo({ top: 0, behavior: 'auto' });
+            
             const projectId = getParameterByName('id') || '1';
             const project = projects[projectId] || projects['1'];
 
