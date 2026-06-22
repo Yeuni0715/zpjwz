@@ -301,65 +301,82 @@
         }
 
         /* 图集区域 */
-        .gallery-scroll-container {
+        .gallery-container {
             position: relative;
-            margin-bottom: 12px;
-        }
-
-        .gallery-scroll {
-            display: flex;
-            gap: 12px;
-            overflow-x: auto;
-            overflow-y: hidden;
-            padding-bottom: 12px;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .gallery-scroll::-webkit-scrollbar {
-            display: none;
-        }
-
-        .gallery-item {
-            flex-shrink: 0;
-            width: 280px;
-            max-width: calc(100% - 24px);
-            aspect-ratio: 4/3;
-            border-radius: 16px;
             overflow: hidden;
+            border-radius: 16px;
             background: #f5f5f5;
-            scroll-snap-align: center;
-            scroll-snap-stop: always;
+            touch-action: pan-x;
         }
 
-        .gallery-item img {
+        .gallery-track {
+            display: flex;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-slide {
+            flex-shrink: 0;
             width: 100%;
-            height: 100%;
-            object-fit: contain;
-            background: #f5f5f5;
+            position: relative;
         }
 
-        .gallery-indicator {
+        .gallery-slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .gallery-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .gallery-arrow {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease;
+            border: 1px solid #e0e0e0;
+        }
+
+        .gallery-arrow:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+
+        .gallery-arrow i {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .gallery-indicators {
             display: flex;
             justify-content: center;
             gap: 6px;
         }
 
         .gallery-dot {
-            width: 8px;
-            height: 8px;
+            width: 6px;
+            height: 6px;
             border-radius: 50%;
             background: rgba(232, 93, 117, 0.3);
-            transition: all 0.3s ease;
             cursor: pointer;
+            transition: all 0.3s ease;
         }
 
         .gallery-dot.active {
             background: #E85D75;
-            width: 20px;
-            border-radius: 4px;
+            width: 16px;
+            border-radius: 3px;
         }
 
         /* 页脚 */
@@ -440,39 +457,39 @@
             <!-- 图集区域 -->
             <section class="detail-gallery-section">
                 <h2 class="section-title">项目图集</h2>
-                <div class="gallery-scroll-container">
-                    <div class="gallery-scroll" id="galleryScroll">
-                        <div class="gallery-item">
+                <div class="gallery-container" id="gallery-container">
+                    <div class="gallery-track" id="gallery-track">
+                        <div class="gallery-slide">
                             <img src="png/04ip/Sofufu/1.png" alt="酥芙芙契茶屋">
                         </div>
-                        <div class="gallery-item">
-                            <img src="png/04ip/Sofufu/2.png" alt="福克斯">
+                        <div class="gallery-slide">
+                            <img src="png/04ip/Sofufu/2.jpg" alt="福克斯">
                         </div>
-                        <div class="gallery-item">
+                        <div class="gallery-slide">
                             <img src="png/04ip/Sofufu/3.png" alt="小栗贝儿">
                         </div>
-                        <div class="gallery-item">
+                        <div class="gallery-slide">
                             <img src="png/04ip/Sofufu/4.png" alt="克尔顿">
                         </div>
-                        <div class="gallery-item">
+                        <div class="gallery-slide">
                             <img src="png/04ip/Sofufu/5.png" alt="瑞比特">
                         </div>
                     </div>
-                    <div class="gallery-nav-buttons">
-                        <button class="gallery-nav-btn left" id="galleryPrev">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
-                        <button class="gallery-nav-btn right" id="galleryNext">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
-                    </div>
                 </div>
-                <div class="gallery-indicator" id="galleryIndicator">
-                    <span class="gallery-dot active" data-index="0"></span>
-                    <span class="gallery-dot" data-index="1"></span>
-                    <span class="gallery-dot" data-index="2"></span>
-                    <span class="gallery-dot" data-index="3"></span>
-                    <span class="gallery-dot" data-index="4"></span>
+                <div class="gallery-controls">
+                    <button class="gallery-arrow gallery-prev" id="gallery-prev" aria-label="上一张">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="gallery-indicators" id="gallery-indicators">
+                        <span class="gallery-dot active" data-index="0"></span>
+                        <span class="gallery-dot" data-index="1"></span>
+                        <span class="gallery-dot" data-index="2"></span>
+                        <span class="gallery-dot" data-index="3"></span>
+                        <span class="gallery-dot" data-index="4"></span>
+                    </div>
+                    <button class="gallery-arrow gallery-next" id="gallery-next" aria-label="下一张">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
                 </div>
             </section>
 
@@ -582,88 +599,86 @@
                 });
             }
 
-            // 图集滑动指示器和导航按钮
-            var galleryScroll = document.getElementById('galleryScroll');
-            var galleryIndicator = document.getElementById('galleryIndicator');
-            var galleryPrev = document.getElementById('galleryPrev');
-            var galleryNext = document.getElementById('galleryNext');
+            // 图集滑动功能
+            var galleryContainer = document.getElementById('gallery-container');
+            var galleryTrack = document.getElementById('gallery-track');
+            var galleryPrev = document.getElementById('gallery-prev');
+            var galleryNext = document.getElementById('gallery-next');
+            var galleryIndicators = document.getElementById('gallery-indicators');
             
-            if (galleryScroll && galleryIndicator) {
-                // 滑动监听更新指示器
-                galleryScroll.addEventListener('scroll', function() {
-                    updateGalleryIndicator();
-                });
+            if (galleryContainer && galleryTrack) {
+                var currentIndex = 0;
+                var slides = galleryTrack.querySelectorAll('.gallery-slide');
+                var totalSlides = slides.length;
+                var dots = galleryIndicators.querySelectorAll('.gallery-dot');
                 
-                // 点击指示器跳转
-                var dots = galleryIndicator.querySelectorAll('.gallery-dot');
-                dots.forEach(function(dot) {
-                    dot.addEventListener('click', function() {
-                        var index = parseInt(this.dataset.index);
-                        scrollToGalleryImage(index);
+                // 更新图集位置
+                function updateGallery() {
+                    galleryTrack.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+                    
+                    // 更新指示器
+                    dots.forEach(function(dot, index) {
+                        if (index === currentIndex) {
+                            dot.classList.add('active');
+                        } else {
+                            dot.classList.remove('active');
+                        }
                     });
-                });
+                }
                 
-                // 左右箭头点击事件
+                // 上一张
                 if (galleryPrev) {
                     galleryPrev.addEventListener('click', function() {
-                        scrollGallery(-1);
+                        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                        updateGallery();
                     });
                 }
                 
+                // 下一张
                 if (galleryNext) {
                     galleryNext.addEventListener('click', function() {
-                        scrollGallery(1);
+                        currentIndex = (currentIndex + 1) % totalSlides;
+                        updateGallery();
                     });
                 }
-            }
-            
-            function scrollToGalleryImage(index) {
-                var items = galleryScroll.querySelectorAll('.gallery-item');
-                if (items[index]) {
-                    items[index].scrollIntoView({ behavior: 'smooth', inline: 'center' });
-                }
-            }
-            
-            function updateGalleryIndicator() {
-                var items = galleryScroll.querySelectorAll('.gallery-item');
-                var containerWidth = galleryScroll.offsetWidth;
-                var scrollLeft = galleryScroll.scrollLeft;
                 
-                items.forEach(function(item, index) {
-                    var itemLeft = item.offsetLeft;
-                    var itemWidth = item.offsetWidth;
-                    var itemCenter = itemLeft + itemWidth / 2;
-                    var viewportCenter = scrollLeft + containerWidth / 2;
+                // 点击指示器跳转
+                dots.forEach(function(dot, index) {
+                    dot.addEventListener('click', function() {
+                        currentIndex = index;
+                        updateGallery();
+                    });
+                });
+                
+                // 触摸滑动支持
+                var startX = 0;
+                var isDragging = false;
+                
+                galleryContainer.addEventListener('touchstart', function(e) {
+                    startX = e.touches[0].clientX;
+                    isDragging = true;
+                });
+                
+                galleryContainer.addEventListener('touchmove', function(e) {
+                    if (!isDragging) return;
+                    var currentX = e.touches[0].clientX;
+                    var diff = startX - currentX;
                     
-                    var dots = galleryIndicator.querySelectorAll('.gallery-dot');
-                    if (Math.abs(itemCenter - viewportCenter) < itemWidth / 2) {
-                        dots.forEach(function(d) { d.classList.remove('active'); });
-                        dots[index].classList.add('active');
+                    if (Math.abs(diff) > 50) {
+                        if (diff > 0) {
+                            currentIndex = (currentIndex + 1) % totalSlides;
+                        } else {
+                            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                        }
+                        updateGallery();
+                        isDragging = false;
                     }
                 });
-            }
-            
-            function scrollGallery(direction) {
-                var items = galleryScroll.querySelectorAll('.gallery-item');
-                if (items.length === 0) return;
                 
-                var itemWidth = items[0].offsetWidth;
-                var gap = 16; // 图片间距
-                var scrollAmount = itemWidth + gap;
-                
-                galleryScroll.scrollBy({
-                    left: scrollAmount * direction,
-                    behavior: 'smooth'
+                galleryContainer.addEventListener('touchend', function() {
+                    isDragging = false;
                 });
             }
-            
-            // 初始化时让第一张图片居中
-            setTimeout(function() {
-                var initItems = galleryScroll.querySelectorAll('.gallery-item');
-                if (initItems[0]) {
-                    initItems[0].scrollIntoView({ behavior: 'auto', inline: 'center' });
-                }
-            }, 100);
         });
     </script>
 </body>
